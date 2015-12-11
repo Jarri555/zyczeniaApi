@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3a0c8f99f2d233c75f3c1136d7a9ac8a",
-    "content-hash": "8c76e1055d7a09032d5d04e087862a5d",
+    "hash": "fa5f8aa89d92090fb365c9b3cd9ba049",
+    "content-hash": "4d8efd68c7cc10ae4964f3b133e30d2a",
     "packages": [
         {
             "name": "danielstjules/stringy",
@@ -271,7 +271,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/cab2edff25a52ac121e44e86ca762fbff623034a",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/c476f6052e6e8334afe0fc1a50c95ec09905a83c",
                 "reference": "cab2edff25a52ac121e44e86ca762fbff623034a",
                 "shasum": ""
             },
@@ -423,6 +423,60 @@
             "time": "2015-11-04 20:07:17"
         },
         {
+            "name": "phpmailer/phpmailer",
+            "version": "5.4.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPMailer/PHPMailer.git",
+                "reference": "5cdb01b12961ddc9ccb33b5f48e5dabe605e6915"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/5cdb01b12961ddc9ccb33b5f48e5dabe605e6915",
+                "reference": "5cdb01b12961ddc9ccb33b5f48e5dabe605e6915",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpdocumentor/phpdocumentor": "2.*",
+                "phpunit/phpunit": "4.*"
+            },
+            "suggest": {
+                "league/oauth2-google": "Needed for Gmail XOAUTH2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PHPMailer\\PHPMailer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "Jim Jagielski",
+                    "email": "jimjag@gmail.com"
+                },
+                {
+                    "name": "Marcus Bointon",
+                    "email": "phpmailer@synchromedia.co.uk"
+                },
+                {
+                    "name": "Andy Prevost",
+                    "email": "codeworxtech@users.sourceforge.net"
+                },
+                {
+                    "name": "Brent R. Matzelle"
+                }
+            ],
+            "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
+            "time": "2015-12-01 14:44:12"
+        },
+        {
             "name": "symfony/polyfill-mbstring",
             "version": "v1.0.0",
             "source": {
@@ -547,7 +601,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "illuminate/database": 20
+        "illuminate/database": 20,
+        "phpmailer/phpmailer": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
