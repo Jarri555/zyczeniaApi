@@ -109,34 +109,28 @@ $app->post('/wishes', function () use ($app) {
             throw new Exception("Nie udało się dodać życzeń :(");
         }
         $wishId = $app->db->table('wishes')
-            ->insertGetId(
-                [
-                    'fullName' => $data['fullName'],
-                    'q1' => $q1,
-                    'q1custom' => $q1custom,
-                    'q2' => $data['q2'],
-                    'q3' => $data['q3'],
-                    'language' => $data['language'],
-                    'dateCreated' => date("Y-m-d H:i:s")
-                ]
+            ->insertGetId(array('fullName' => $data['fullName'],
+                'q1' => $q1,
+                'q1custom' => $q1custom,
+                'q2' => $data['q2'],
+                'q3' => $data['q3'],
+                'language' => $data['language'],
+                'dateCreated' => date("Y-m-d H:i:s"))
             );
 
         foreach ($data['recipients'] as $recipient) {
             if (!$recipient['fullName'] || !$recipient['email']) {
                 throw new Exception("Nie udało się dodać życzeń :(");
             }
-            array_push($insert,
-                [
-                    'fullName' => $recipient['fullName'],
-                    'email' => $recipient['email'],
-                    'dateAdd' => date("Y-m-d H:i:s"),
-                    'sendEmail' => false,
-                    'sendDate' => null,
-                    'wishesId' => $wishId,
-                    'token' => md5(uniqid($recipient['email'], true)),
-                    'opened' => false,
-                    'dateOpen' => null
-                ]
+            array_push($insert,array('fullName' => $recipient['fullName'],
+                'email' => $recipient['email'],
+                'dateAdd' => date("Y-m-d H:i:s"),
+                'sendEmail' => false,
+                'sendDate' => null,
+                'wishesId' => $wishId,
+                'token' => md5(uniqid($recipient['email'], true)),
+                'opened' => false,
+                'dateOpen' => null)
             );
         }
 
@@ -234,7 +228,7 @@ $app->put('/wishes/:token', function ($token) use ($app) {
             $app->db
                 ->table('recipients')
                 ->where('id', $user->id)
-                ->update(['dateHang' => date("Y-m-d H:i:s")]);
+                ->update(array('dateHang' => date("Y-m-d H:i:s")));
 
         } catch (\Exception $e) {
             throw new Exception("Wystąpił problem :(");
