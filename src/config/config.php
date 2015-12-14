@@ -7,9 +7,9 @@ $capsule = new Capsule;
 $capsule->addConnection([
     'driver'    => 'mysql',
     'host'      => 'localhost',
-    'database'  => '02115564_0000018',
-    'username'  => '02115564_0000018',
-    'password'  => 'N*YVbTlqe_KH',
+    'database'  => 'zyczenia',
+    'username'  => 'root',
+    'password'  => '',
     'charset'   => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix'    => '',

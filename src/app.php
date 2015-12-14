@@ -30,6 +30,51 @@ function emailsSend($recipients)
 
     try {
         foreach ($recipients as $recipient) {
+
+            $body = '<div style="display:none; white-space:nowrap; font:15px courier; line-height:0;">
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+</div>
+<table width="100%" align="center" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td align="center" valign="top" style="margin: 0; padding: 0;">
+            <table width="600" align="center" bgcolor="#ffffff" border="0" cellspacing="0" cellpadding="0"
+                   style="font-family:Arial, Helvetica, sans-serif;">
+                <tr>
+                    <td align="center" valign="top" style="margin: 0; padding: 0;">
+                        <img style="display: block;" src="http://prp.dev.plej.pl/mailing/mailing_header_top.gif" alt="" width="600" height="240">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="text-align: center;">
+
+                        <h1 style="font-weight: bold; font-size: 26px; color: #D1AC50; line-height: 38px;">'.$recipient['fullName'].'</h1>
+
+                        <p style="font-size: 20px; color: #162C53; line-height: 28px;">Wysłaliśmy, specjalnie dla Ciebie zrobioną<br>
+                        Kartkę Świąteczną<br>
+                        Kliknij poniżej aby ją zobaczyć</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" width="271" style="padding: 15px 0; height: 50px;">
+                        <a href="/'.$recipient['token'].'" style="width: 271px; display: block; height: 50px;"><img style="display: block;" align="center" src="http://prp.dev.plej.pl/mailing/open-pl.jpg" alt="" width="271" height="50"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" valign="top" style="margin: 0; padding: 0;">
+                        <img style="display: block;" src="http://prp.dev.plej.pl/mailing/mailing_header_bottom.gif" alt="" width="600" height="210">
+                    </td>
+                </tr>
+
+
+            </table>
+        </td>
+    </tr>
+</table>';
+
+
             $mail = new PHPMailer;
 
             $mail->isSMTP();
@@ -45,8 +90,8 @@ function emailsSend($recipients)
             $mail->isHTML(true);
 
             $mail->Subject = 'Hej, ' . $recipient['fullName'] . ' mamy życzenia dla Ciebie';
-            $mail->Body = '<p><img src="http://dev.plej.pl/pernod_ricard/mailing/images/header.gif" alt="Wyborowa"></p><p>This is the HTML message body <b>in bold!</b></p><p>Oprócz tego mamy życzenia dla Ciebie, ' . $recipient['fullName'] . '</p><p>Wystarczy, że klikniesz <a href="http://prp.dev.plej.pl/zyczenia/' . $recipient['token'] . '" target="_blank">TUTAJ</a></p>';
-            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            $mail->Body = $body;
+            //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
             $mail->addAddress($recipient['email'], $recipient['fullName']);
 
             if (!$mail->send()) {
@@ -155,6 +200,7 @@ $app->post('/wishes', function () use ($app) {
 
 $app->get('/wishes/:token', function ($token) use ($app) {
     try {
+
         $wish = $app->db
             ->table('recipients')
             ->select('recipients.id', 'wishes.fullName', 'wishes.q1', 'wishes.q1custom', 'wishes.q2', 'wishes.q3', 'wishes.language')
